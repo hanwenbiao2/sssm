@@ -1,9 +1,11 @@
 package chapter6.service;
 
+import io.udi.entity.Role;
 import io.udi.entity.User;
 import io.udi.service.PermissionService;
 import io.udi.service.RoleService;
 import io.udi.service.UserService;
+import io.udi.service.impl.RoleServiceImpl;
 import io.udi.service.impl.UserServiceImpl;
 import io.udi.utils.JdbcTemplateUtils;
 import org.apache.shiro.SecurityUtils;
@@ -17,6 +19,8 @@ import org.apache.shiro.util.ThreadContext;
 import org.junit.After;
 import org.junit.Before;
 
+
+
 /**
  * @Author: HWB
  * @DateTime: 2019/6/4 22:41
@@ -24,7 +28,7 @@ import org.junit.Before;
  */
 public class BaseTest {
 //    protected PermissionService permissionService = new PermissionServiceImpl();
-//    protected RoleService roleService = new RoleServiceImpl();
+    protected RoleService roleService = new RoleServiceImpl();
     protected UserService userService = new UserServiceImpl();
 
     protected String password = "123";
@@ -32,8 +36,8 @@ public class BaseTest {
 //    protected Permission p1;
 //    protected Permission p2;
 //    protected Permission p3;
-//    protected Role r1;
-//    protected Role r2;
+    protected Role r1;
+    protected Role r2;
     protected User u1;
     protected User u2;
     protected User u3;
@@ -56,10 +60,12 @@ public class BaseTest {
         permissionService.createPermission(p2);
         permissionService.createPermission(p3);
         //2、新增角色
+        **/
         r1 = new Role("admin", "管理员", Boolean.TRUE);
         r2 = new Role("user", "用户管理员", Boolean.TRUE);
         roleService.createRole(r1);
         roleService.createRole(r2);
+        /*
         //3、关联角色-权限
         roleService.correlationPermissions(r1.getId(), p1.getId());
         roleService.correlationPermissions(r1.getId(), p2.getId());
@@ -78,8 +84,8 @@ public class BaseTest {
         userService.createUser(u2);
         userService.createUser(u3);
         userService.createUser(u4);
-        /*//5、关联用户-角色
-        userService.correlationRoles(u1.getId(), r1.getId());*/
+        //5、关联用户-角色
+        userService.correlationRoles(u1.getId(), r1.getId());
 
     }
 

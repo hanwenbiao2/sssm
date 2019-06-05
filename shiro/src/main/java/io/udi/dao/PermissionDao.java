@@ -1,14 +1,17 @@
-package io.udi.service;
+package io.udi.dao;
 
 
 import io.udi.entity.Permission;
 
 /**
- * @Author: HWB
- * @DateTime: 2019/6/4 21:39
- * @Description: TODO
+ * <p>User: Zhang Kaitao
+ * <p>Date: 14-1-28
+ * <p>Version: 1.0
  */
-public interface PermissionService {
+public interface PermissionDao {
+
     public Permission createPermission(Permission permission);
+
     public void deletePermission(Long permissionId);
+
 }

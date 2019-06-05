@@ -16,6 +16,7 @@ import java.util.Set;
 public class UserServiceImpl implements UserService {
     private UserDao userDao = new UserDaoImpl();
     private PasswordHelper passwordHelper = new PasswordHelper();
+
     public User createUser(User user) {
         passwordHelper.encryptPassword(user);
         return userDao.createUser(user);
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void correlationRoles(Long userId, Long... roleIds) {
-
+        userDao.correlationRoles(userId,roleIds);
     }
 
     public void uncorrelationRoles(Long userId, Long... roleIds) {
@@ -34,11 +35,14 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findByUsername(String username) {
-        return null;
+
+        User user = userDao.findByUsername(username);
+        return user;
     }
 
     public Set<String> findRoles(String username) {
-        return null;
+        Set<String> roles = userDao.findRoles(username);
+        return roles;
     }
 
     public Set<String> findPermissions(String username) {

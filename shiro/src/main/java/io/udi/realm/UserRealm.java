@@ -5,6 +5,7 @@ import io.udi.service.UserService;
 import io.udi.service.impl.UserServiceImpl;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -17,7 +18,11 @@ import org.apache.shiro.util.ByteSource;
 public class UserRealm extends AuthorizingRealm {
     private UserService userService = new UserServiceImpl();
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        return null;
+        String username = (String)principalCollection.getPrimaryPrincipal();
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        authorizationInfo.setRoles(userService.findRoles(username));
+        authorizationInfo.setStringPermissions(userService.findPermissions(username));
+        return authorizationInfo;
     }
 
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {

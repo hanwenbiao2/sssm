@@ -1,6 +1,7 @@
 package io.udi.service;
 
-import javax.management.relation.Role;
+
+import io.udi.entity.Role;
 
 /**
  * @Author: HWB
