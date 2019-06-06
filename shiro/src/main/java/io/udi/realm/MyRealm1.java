@@ -19,10 +19,10 @@ public class MyRealm1 implements Realm {
         return token instanceof UsernamePasswordToken;
     }
 
-    public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+    public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token)  {
         String username = (String)token.getPrincipal();
         String password =new String((char[])token.getCredentials());
-        if (!"zhang1".equals(username))
+        if (!"zhang".equals(username))
         {
             throw new UnknownAccountException();
         }
