@@ -15,7 +15,6 @@ public class RoleServiceImpl  implements RoleService {
     public Role createRole(Role role) {
         Role role1 = roleDao.createRole(role);
         return role1;
-
     }
 
     public void deleteRole(Long roleId) {
