@@ -4,6 +4,7 @@ import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authz.UnauthenticatedException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -37,7 +38,7 @@ public class UserRealmTest extends  BaseTest {
     public void testLoginFailWithLocked() {
         login("classpath:chapter6/shiro.ini", u4.getUsername(), password + "1");
     }
-    @Test(expected = ExcessiveAttemptsException.class)
+    @Test(expected = UnauthenticatedException.class)
     public void testLoginFailWithLimitRetryCount() {
         for(int i = 1; i <= 5; i++) {
             try {

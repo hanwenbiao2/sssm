@@ -5,7 +5,7 @@ package io.udi.threads;
  * @DateTime: 2019/6/10 17:39
  * @Description: TODO
  */
-public class DataS  {
+public class DataS {
 /*    public static void main(String[] args) {
         MyThread a = new MyThread("A");
         MyThread b = new MyThread("B");
@@ -16,11 +16,11 @@ public class DataS  {
     }*/
 
     public static void main(String[] args) {
-        MyThread mythread=new MyThread();
+        MyThread mythread = new MyThread();
         //线程a b c启动的时候，执行的是myThread的方法，此时数据共享
-        Thread a=new Thread(mythread,"A");
-        Thread b=new Thread(mythread,"B");
-        Thread c=new Thread(mythread,"C");
+        Thread a = new Thread(mythread, "A");
+        Thread b = new Thread(mythread, "B");
+        Thread c = new Thread(mythread, "C");
         Thread thread = Thread.currentThread();
         String name = thread.getName();
         System.out.println(name);
@@ -31,6 +31,7 @@ public class DataS  {
 
     }
 }
+
 class MyThread extends Thread {
 
     private int count = 5;
@@ -39,19 +40,20 @@ class MyThread extends Thread {
         super();
         this.setName(name);
     }
+
     public MyThread() {
 
     }
 
-  /*  @Override
-    public void run() {
-        super.run();
-        while (count > 0) {
-            count--;
-            System.out.println("由 " + this.currentThread().getName()
-                    + " 计算，count=" + count);
-        }
-    }*/
+    /*  @Override
+      public void run() {
+          super.run();
+          while (count > 0) {
+              count--;
+              System.out.println("由 " + this.currentThread().getName()
+                      + " 计算，count=" + count);
+          }
+      }*/
     @Override
     public synchronized void run() {
         super.run();
