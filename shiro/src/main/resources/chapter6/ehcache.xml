@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ehcache name="es">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns='http://www.ehcache.org/v3'
+        xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core.xsd">
+<cache alias="foo" >
+    <key-type></key-type>
+    <value-type></value-type>
+    <resources>
+       <heap unit="entries">20</heap>
+        <offheap unit="MB">10</offheap>
+        <disk unit="GB">10</disk>
+    </resources>
 
-    <diskStore path="java.io.tmpdir"/>
-
-    <!-- 登录记录缓存 锁定10分钟 -->
-    <cache name="passwordRetryCache"
-           maxEntriesLocalHeap="2000"
-           eternal="false"
-           timeToIdleSeconds="3600"
-           timeToLiveSeconds="0"
-           overflowToDisk="false"
-           statistics="true">
+</cache>
+    <cache-template name="myDefaults">
+        <key-type>java.lang.Long</key-type>
+        <value-type>java.lang.String</value-type>
+        <heap unit="entries">20</heap>
+    </cache-template>
+    <cache alias="bar" uses-template="myDefaults">
+        <key-type>java.lang.Number</key-type>
     </cache>
+    <cache alias="simpleCache" uses-template="myDefaults" />
+<disk-store thread-pool="c">
 
-</ehcache>
+</disk-store>
+</config>
+
+    <!--<config name="es">-->
+
+    <!--<diskStore path="java.io.tmpdir"/>-->
+
+    <!--&lt;!&ndash; 登录记录缓存 锁定10分钟 &ndash;&gt;-->
+    <!--<cache name="passwordRetryCache"-->
+           <!--maxEntriesLocalHeap="2000"-->
+           <!--eternal="false"-->
+           <!--timeToIdleSeconds="3600"-->
+           <!--timeToLiveSeconds="0"-->
+           <!--overflowToDisk="false"-->
+           <!--statistics="true">-->
+    <!--</cache>-->
+
+<!--</config>-->
