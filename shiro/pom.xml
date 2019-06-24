@@ -58,6 +58,11 @@
             <artifactId>spring-jdbc</artifactId>
             <version>4.0.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.0.0.RELEASE</version>
+        </dependency>
 
         <dependency>
             <groupId>net.sf.ehcache</groupId>

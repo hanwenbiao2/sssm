@@ -24,7 +24,36 @@ public class SynchornizedTest {
             e.printStackTrace();
         }
     }
+    @Test
+    public  void testsynchornizedAB() {
+        HasSelfPrivateNum hasSelfPrivateNumA = new HasSelfPrivateNum();
+        HasSelfPrivateNum hasSelfPrivateNumB = new HasSelfPrivateNum();
 
+        SynchronizedA synchronizedA= new SynchronizedA(hasSelfPrivateNumA);
+        SynchronizedB synchronizedB = new SynchronizedB(hasSelfPrivateNumB);
+        synchronizedA.start();
+        synchronizedB.start();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public  void testPublicVar() {
+        try {
+            PublicVar publicVar = new PublicVar();
+            PublicVarThread publicVarThread= new PublicVarThread(publicVar);
+            publicVarThread.start();
+            Thread.sleep(200);
+            publicVar.getValue();
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     @Test
     public void testShareDateThread() {
         ShareDataThread shareDataThread = new ShareDataThread();
