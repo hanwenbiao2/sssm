@@ -5,9 +5,9 @@ package io.udi.thread.Synchronized;
  * @DateTime: 2019/6/24 16:46
  * @Description: TODO
  */
-public class SynchronizedThisA extends Thread {
+public class SynchronizedThisB extends Thread {
     private ObjectService service;
-    public SynchronizedThisA( ObjectService service){
+    public SynchronizedThisB(ObjectService service){
         super();
         this.service = service;
     }
@@ -15,6 +15,7 @@ public class SynchronizedThisA extends Thread {
     @Override
     public void run() {
         super.run();
-        service.serviceMethod();
+//        service.serviceMethod();
+        service.serviceMethodA();
     }
 }

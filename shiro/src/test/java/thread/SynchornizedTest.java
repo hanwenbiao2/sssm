@@ -1,9 +1,6 @@
 package thread;
 
-import io.udi.thread.Synchronized.LoginA;
-import io.udi.thread.Synchronized.LoginB;
-import io.udi.thread.Synchronized.NShareDataThread;
-import io.udi.thread.Synchronized.ShareDataThread;
+import io.udi.thread.Synchronized.*;
 import org.junit.Test;
 
 /**
@@ -54,6 +51,48 @@ public class SynchornizedTest {
         LoginA loginA = new LoginA();
         LoginB loginB = new LoginB();
         loginA.start();
+        loginB.start();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    public  void testNegativeThread() {
+        Task task = new Task();
+        NegativeThread negativeThread = new NegativeThread(task);
+        negativeThread.start();
+        NegativeThread1 negativeThread1 = new NegativeThread1(task);
+        negativeThread1.start();
+
+        try {
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long beginTime = CommonUtils.beginTime1;
+        if (CommonUtils.beginTime2 < CommonUtils.beginTime1) {
+            beginTime = CommonUtils.beginTime2;
+        }
+        long endTime = CommonUtils.endTime1;
+        if (CommonUtils.endTime2 > CommonUtils.endTime1) {
+            endTime = CommonUtils.endTime2;
+        }
+        System.out.println(" 耗时： " + (endTime - beginTime) /1000);
+    }
+
+    @Test
+    public  void testSynchornizedThis() {
+        ObjectService service = new ObjectService();
+        SynchronizedThisA loginA = new SynchronizedThisA(service);
+        loginA.setName("a");
+        loginA.start();
+        SynchronizedThisB loginB = new SynchronizedThisB(service);
+        loginA.setName("b");
         loginB.start();
 
         try {

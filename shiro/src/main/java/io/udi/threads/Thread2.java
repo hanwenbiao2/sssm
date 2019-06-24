@@ -5,16 +5,20 @@ package io.udi.threads;
  * @DateTime: 2019/6/11 12:53
  * @Description: TODO
  */
-public class Thread1  extends   Thread{
+public class Thread2 extends   Thread{
 
     @Override
     public void run(){
 
         try {
-            for (int i = 0; i < 10; i++) {
-                TestClass.list.add(1);
-                System.out.println("添加了" + (i + 1) + "个元素");
-                Thread.sleep(1000);
+            while (true) {
+                if (TestClass.list.size() == 5) {
+                    System.out.println("==5了，线程b要退出了！");
+                    throw new InterruptedException();
+                }else {
+                    System.out.println("i am live");
+                }
+
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
